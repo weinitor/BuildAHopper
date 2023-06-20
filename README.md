@@ -61,7 +61,7 @@ By actively adding energy to the system through the force transmitted to the bal
 > We have a control law $u(t)$, which is a constant force $\tau$ that is applied uniformly for a specific time duration $\delta$ at the lowest point $\chi_b$.
 > To be precise, $u(t)=\tau$ for $t\in(t_{b},t_{b}+\delta)$. We need to define the initial conditions along with the above-mentioned conditions carefully.
 
-> Given the properties of the ball: mass $m=1(\text{kg})$, rest length $\chi_0=0.05(\text{m})$, the spring constant $k=70000(\text{N/m})$, viscous damping coefficient $ b=15(\text{N s/m})$.
+> Given the properties of the ball: mass $m=1(\text{kg})$, rest length $\chi_0=0.05(\text{m})$, the spring constant $k=70000(\text{N/m})$, viscous damping coefficient $b=15(\text{Ns/m})$.
 > Assuming that $\tau=20(\text{N})$ for a sufficient duration $\delta = 0.005(\text{sec})$.
 > Use the program `PaddlingBouncingBall.m` to simulate its motion.
 > We should be able to observe the ball gradually bouncing toward a certain height.
