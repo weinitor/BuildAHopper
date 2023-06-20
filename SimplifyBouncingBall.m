@@ -16,7 +16,8 @@ addpath(genpath(fileparts(mfilename('fullpath'))));
 param.g = 9.8;
 param.r = 0.05;         % ball diameter/ spring rest length
 param.m = 1;            % ball mass
-param.discount = 0.8;   % Energey discount
+param.discount = 0.8;   % Energey discount (elastic efficiency)
+param.rho = -sqrt(param.discount); % coefficient of restitution (negative)
 
 % Initial position Q0 = [q dq]
 Q0 = [1 0];
@@ -34,7 +35,7 @@ while T(end) < tfinal
     T = [T; Ttemp(2:nT)];
     Q = [Q; Qtemp(2:nT,:)];
     Q0(1) = Qtemp(nT,1);
-    Q0(2) = -sqrt(param.discount)*Qtemp(nT,2);
+    Q0(2) = param.rho*Qtemp(nT,2);
     tbegin = T(end);
 end
     
