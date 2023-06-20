@@ -46,11 +46,11 @@ $m \ddot{\chi}+b \dot{\chi}+k (\chi-\chi_0)=-mg$ (2)</p>
 
 ## Paddling (Juggling) Ball
 We have discovered the motion of a bouncing ball when released from a specific height. 
-The damper in the system consumes energy, causing the ball to eventually stop bouncing. 
+The damper in the system consumes energy, causing the ball to stop bouncing eventually. 
 However, we can inject energy into the system to counterbalance the energy consumed by the damper if we want the ball to bounce indefinitely. 
 
 Imagine using a solid, flat paddle to propel an elastic ball upward. 
-If we are skilled professionals and can make the ball land in the same position every time, we can apply a constant, uniform force from the moment the ball reaches its lowest point for a certain amount of time. 
+If we are skilled professionals and can make the ball land in the same position every time, we can apply a constant, uniform force from when the ball reaches its lowest point for a certain amount of time. 
 By actively adding energy to the system through the force transmitted to the ball via the paddle, we can envision the ball bouncing to a constant height, perpetually, as long as we continue to provide the necessary energy.
 
 <p align="center">
@@ -97,13 +97,13 @@ As a result, our control law is similar to the ball-paddling problem.
 ### Pneumatic actuator
 Next, we have the pogo stick with a pneumatic spring. 
 When compressed, a pneumatic spring gains its springiness from compressing air or other gas. 
-Assuming the gas in the spring is ideal and the temperature remains constant during compression, Boyle's law dictates that the pressure and volume have a constant product, expressed as $p V = C$.
+Assuming the gas in the spring is ideal, and the temperature remains constant during compression, Boyle's law dictates that the pressure and volume have a constant product, expressed as $p V = C$.
 
 <p align="center">
 <img src="figs/fig5.png" alt="Air spring hopper" height="300"/>
 </p>
 
-> Find the air spring force law $F_{pneu}=f(\chi, V, A, p, C)$ that the pneumatic spring gives given the notations from the above figure. 
+> Find the air spring force law $F_{pneu}=f(\chi, V, A, p, C)$ that the pneumatic spring gives, given the notations from the above figure. 
 
 > If we were to inject gas into the air chamber at the lowest point of the stance phase, it would increase the stiffness of the spring and cause the pogo stick to jump up.
 > To calculate the additional force produced by this action, we can use the ideal gas law $(p V=n R T)$ and assume that the number of gas molecules is multiplied by a factor of $N$ from the lowest point for a certain duration.
@@ -114,7 +114,7 @@ Assuming the gas in the spring is ideal and the temperature remains constant dur
 </p>
 
 > In order to control our system, we will use a control law where the force added, denoted by $F_{add}$, will be applied from the lowest point for a certain duration.
-> It is important to note that the system will not behave like an ideal gas and heat loss will occur during compression.
+> It is important to note that the system will not behave like an ideal gas, and heat loss will occur during compression.
 > To simplify, we will consider the heat loss to be in the form of a damper, denoted by $b \dot{\mathbf{x}}$.
 > The equation of motion for the controlled system can be expressed as $\dot{\mathbf{x}}=f(\mathbf{x})+g(u)$.
 > By applying this control strategy in our simulation, we can find a reasonable torque for the hopper to maintain a constant height of $1$ meter, as specified.
@@ -122,11 +122,11 @@ Assuming the gas in the spring is ideal and the temperature remains constant dur
 
 ### Electromagnetic Virtual Spring
 In the previous model that used pneumatic technology, we observed the benefits of having a hopper with adjustable stiffness. 
-The system's dynamics can be easily represented through the equation: $\dot{\mathbf{x}}=f(\mathbf{x},N)$. 
+The system's dynamics can be easily represented through the equation: $\dot{\mathbf{x}}=f(\mathbf{x}, N)$. 
 However, implementing a pneumatic spring in real-world scenarios poses difficulties due to the bulky and heavy nature of the pneumatic pump. 
 But what if we could control the stiffness of a Hooke-law spring? 
 What if a virtual Hooke-law spring could be constructed using an electromagnetic actuator? 
-By manipulating the spring constant, we could effectively control the hopper and make it jump as we wish.
+By manipulating the spring constant, we could effectively control the hopper and make it jump as we wished.
 
 > Now assume that we have a stiffness-adjustable Hooke-law spring with a general spring constant $k$.
 > Whenever the hopper reaches its lowest point, we'll change the spring constant to $N k$ for a duration of only $\delta=0.005(sec)$. The spring will then press up with a spring-loaded force, according to Hooke's law.
@@ -139,12 +139,12 @@ By manipulating the spring constant, we could effectively control the hopper and
 ## Active Five-bar-linkage Leg
 So far, we've only examined a basic form of a hopper. 
 This straightforward mass-spring-damper model is known as a "template" for a hopper, as it demonstrates the intended behavior [template paper]. 
-We can now try to embed more joints and actuators into the system, like what a leg really could look like. 
+We can now try to embed more joints and actuators into the system, like what a leg could look like. 
 This process is called anchoring, which may involve incorporating more actuators to strengthen the system or make it more feasible. 
 The Electromagnetic Virtual Spring model hopper mentioned earlier in the previous chapter is challenging to implement as linear actuators are sluggish and bulky. 
 Therefore, we need to anchor this design to a more practical mechanism.
-Here we introduce the Minitaur leg (five-bar linkage), this is a good example of anchoring a simple hopper template into a more sophisticated mechanism. 
-The two motors provide two degrees of freedom for this mechanism, in the radial direction and axial direction. 
+Here we introduce the Minitaur leg (five-bar linkage), a good example of anchoring a simple hopper template into a more sophisticated mechanism. 
+The two motors provide two degrees of freedom for this mechanism in the radial and axial directions. 
 
 <p align="center">
 <img src="figs/fig7.png" alt="5-bar linkage hopper leg" height="300"/>
@@ -155,8 +155,12 @@ The two motors provide two degrees of freedom for this mechanism, in the radial 
 > To anchor our simple hopper template into the Minitaur leg, we will have to find the inverse kinematic of the system. Our goal is to express the two motor control inputs using the radius and angle of the simple hopper. This can be achieved through the function $g:(r,\theta)\rightarrow(\theta_1,\theta_2)$. Find the inverse kinematic of the system.
 
 > Now, our attention will be on the vertical hopping while disregarding the radial movement.
-> Let's assume that the two motors are symmetric, meaning $\theta_1=\theta_2=\xi$, so we can regulate the hopper's length by using a rotation input $\xi$.
+> Let's assume that the two motors are symmetric, meaning $\theta_1=\theta_2=\xi$, so we can regulate the hopper's length using a rotation input $\xi$.
 > Please provide the kinematic mapping $f:\xi\rightarrow r$ and the inverse kinematic mapping $g:r\rightarrow\xi$.
 
 > Now anchor the Electromagnetic virtual spring model onto the Minitaur leg model by finding what the control input should be using our inverse kinematic mapping.
 > Use the program `ActiveFiveBarHopper.m` to simulate its motion.
+
+
+## Acknowledgement
+This project was originally developed for the Legged Robot Locomotion taught by Professor Daniel E. Koditschek. 
