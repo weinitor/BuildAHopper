@@ -59,13 +59,13 @@ By actively adding energy to the system through the force transmitted to the bal
 
 > Let's convert the Equation of motion to a forced dynamic system using the format $\dot{\mathbf{x}}=f(\mathbf{x})+g(u)$, with $g(u)$ being the control law for this problem.
 > We have a control law $u(t)$, which is a constant force $\tau$ that is applied uniformly for a specific time duration $\delta$ at the lowest point $\chi_b$.
-> To be precise, $u(t)=\tau$ for $t\in(t_{b},t_{b}+\delta)$. We need to carefully define the initial conditions along with the above-mentioned conditions.
+> To be precise, $u(t)=\tau$ for $t\in(t_{b},t_{b}+\delta)$. We need to define the initial conditions along with the above-mentioned conditions carefully.
 
 > Given the properties of the ball: mass $m=1(\text{kg})$, rest length $\chi_0=0.05(\text{m})$, the spring constant $k=70000(\text{N/m})$, viscous damping coefficient $ b=15(\text{N s/m})$.
 > Assuming that $\tau=20(\text{N})$ for a sufficient duration $\delta = 0.005(\text{sec})$.
 > Use the program `PaddlingBouncingBall.m` to simulate its motion.
 > We should be able to observe the ball gradually bouncing toward a certain height.
-> What is the necessary thrust $\tau$, measured in N, to maintain the hopper at a height of $h=1(\text{m})$?
+> What is the necessary thrust $\tau$, measured in N, to maintain the hopper at the height of $h=1(\text{m})$?
 
 
 ## Active Hopper
@@ -73,14 +73,14 @@ Moving forward, let's shift our focus from the classic bouncing ball with paddle
 Interestingly, both systems share the same equations of motion. 
 The key difference lies in how we inject energy into the system. 
 Instead of relying on the ground to transfer energy, we will utilize an actuator attached to the pogo stick. 
-While muscle exertion is the primary actuator in living beings, artificial systems require a different approach; such as using motors, linear actuators, and pneumatic actuators to generate or dissipate energy. 
+While muscle exertion is the primary actuator in living beings, artificial systems require a different approach, such as using motors, linear actuators, and pneumatic actuators to generate or dissipate energy. 
 
 <p align="center">
 <img src="figs/fig4.png" alt="Verticle hopper with thrust" height="300"/>
 </p>
 
 There are two popular methods for building a pogo stick - using a linear (coil) spring or a pneumatic spring. 
-Pneumatic springs are capable of delivering more force to the system than linear springs and are ideal for tasks requiring higher loading. 
+Pneumatic springs can deliver more force to the system than linear springs and are ideal for tasks requiring higher loading. 
 On the other hand, linear springs are more sensitive and have a higher bandwidth, making them a better choice for agile tasks. 
 Since the mechanisms are different, control strategies also vary. 
 In this context, we will simulate several actuator models to determine our control input $u(t)$ for different mechanisms.
@@ -113,8 +113,6 @@ Assuming the gas in the spring is ideal and the temperature remains constant dur
 <img src="figs/fig6.png" alt="Actuated Hopper: Air spring and Electromagnetic virtual spring" height="300"/>
 </p>
 
-> We will set our control law to be $u=F_{add}$ from the lowest point to the take off point of the stance phase. The empirical system will not behave like a ideal gas and there will be heat loss during the compression. For a simplify version, we say that the heat loss also takes the form of the damper, that is, $b \dot{\mathbf{x}}$. Write down the equation of motions for the controlled system $\dot{\mathbf{x}}=f(\mathbf{x})+g(u)$. Apply the control strategy in the simulation with the given specifications and find a reasonable torque for the hopper to maintain the same height $h=1(\text{m})$.
->
 > In order to control our system, we will use a control law where the force added, denoted by $F_{add}$, will be applied from the lowest point for a certain duration.
 > It is important to note that the system will not behave like an ideal gas and heat loss will occur during compression.
 > To simplify, we will consider the heat loss to be in the form of a damper, denoted by $b \dot{\mathbf{x}}$.
